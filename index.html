@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b10">
+<title>BuildPC — Mi PC Gaming</title>
+<style>
+:root{color-scheme:dark;--bg:#090b10;--panel:#111722;--line:#263244;--muted:#91a0b5;--text:#eef4ff;--accent:#8b5cf6;--glow:#9b5cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#1b1730 0,transparent 42%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Segoe UI,sans-serif}
+header{padding:25px clamp(18px,4vw,56px);border-bottom:1px solid #202938;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:800;letter-spacing:.12em}.brand span{color:#b69aff}.tag{color:var(--muted);font-size:12px}
+main{max-width:1400px;margin:auto;padding:28px clamp(16px,4vw,48px) 60px}.intro{margin-bottom:22px}.intro h1{font-size:clamp(27px,4vw,42px);line-height:1.1;margin:0 0 9px}.intro p{margin:0;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(310px,.8fr);gap:20px}.panel{background:linear-gradient(145deg,#151d2a,#0e141e);border:1px solid var(--line);border-radius:18px;overflow:hidden}.panelhead{padding:17px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.panelhead h2{font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0}.hint{font-size:12px;color:var(--muted)}
+.stage{min-height:560px;display:grid;place-items:center;perspective:1100px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 55%,#22243d 0,transparent 52%),linear-gradient(135deg,#0d131d,#090d14)}
+.floor{position:absolute;width:80%;height:30%;bottom:8%;background:radial-gradient(ellipse,#7150c833,transparent 68%);filter:blur(15px)}
+.pc{width:min(76%,560px);height:420px;position:relative;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(5deg);transition:transform .35s}
+.case{position:absolute;inset:8px 20px 10px 20px;border:9px solid #252b36;border-radius:15px;background:linear-gradient(110deg,#111722dd,#090d16bb);box-shadow:25px 25px 45px #000a,inset 0 0 0 2px #65708655;overflow:hidden}
+.case:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,#ffffff10,transparent 28%,#ffffff08 60%,transparent);pointer-events:none}
+.glass{position:absolute;inset:8px;border:1px solid #9ca9c355;border-radius:7px;background:#0b111b88}
+.mobo{position:absolute;left:9%;top:12%;width:53%;height:76%;border:2px solid #354256;border-radius:8px;background:linear-gradient(135deg,#1b2634,#111923);box-shadow:inset 0 0 20px #000}
+.mobo:before{content:"";position:absolute;inset:10px;background:repeating-linear-gradient(0deg,transparent 0 20px,#7d8ba011 21px 22px),repeating-linear-gradient(90deg,transparent 0 20px,#7d8ba011 21px 22px)}
+.cpu{position:absolute;left:37%;top:38%;width:25%;aspect-ratio:1;border:4px solid #737d8e;border-radius:7px;background:radial-gradient(circle,#202b3c,#080d15);box-shadow:0 0 16px var(--glow),0 0 32px color-mix(in srgb,var(--glow) 45%,transparent)}
+.gpu{position:absolute;left:13%;top:63%;width:74%;height:22%;border:3px solid #555f70;border-radius:8px;background:linear-gradient(90deg,#252e3d,#111923);box-shadow:0 0 14px #8b5cf655}
+.gpu:before,.gpu:after{content:"";position:absolute;top:14%;width:34%;aspect-ratio:1;border-radius:50%;border:5px solid #657185;background:repeating-conic-gradient(#263344 0 18deg,#111923 19deg 36deg);box-shadow:0 0 10px var(--glow)}
+.gpu:before{left:9%}.gpu:after{right:9%}
+.ram{position:absolute;right:12%;top:16%;width:8%;height:43%;display:flex;gap:5px}.ram i{flex:1;border-radius:4px;background:linear-gradient(90deg,#293648,#b18aff,#263447);box-shadow:0 0 10px var(--glow)}
+.fan{position:absolute;width:88px;height:88px;border:5px solid #455064;border-radius:50%;background:repeating-conic-gradient(#293445 0 25deg,#111a27 26deg 50deg);box-shadow:0 0 0 3px #101722,0 0 17px var(--glow),inset 0 0 0 13px #111722}
+.fan:after{content:"";position:absolute;inset:31px;border-radius:50%;background:radial-gradient(circle,#d7c5ff,#7050b8 55%,#111)}
+.f1{right:7%;top:12%}.f2{right:7%;top:39%}.f3{right:7%;top:66%}
+.rear{position:absolute;left:4%;top:10%;width:72px;height:72px;transform:translateZ(-4px)}
+.radiator{position:absolute;right:3%;top:9%;height:82%;width:25%;border:5px solid #333f50;background:repeating-linear-gradient(90deg,#182231 0 5px,#344254 6px 8px);border-radius:6px;opacity:.95}
+.cable{position:absolute;left:48%;top:48%;width:28%;height:30%;border:4px solid #8b5cf6;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;opacity:.55}
+.frontedge{position:absolute;right:-22px;top:20px;width:22px;height:370px;transform:skewY(-22deg);transform-origin:left;background:linear-gradient(90deg,#252c38,#0c1119);border:1px solid #404b5c}
+.controls{padding:20px;display:grid;gap:16px}.group{display:grid;gap:7px}.group label{font-size:12px;color:#aebbd0;text-transform:uppercase;letter-spacing:.07em}.group select,.group input{width:100%;background:#0b111a;border:1px solid #344156;border-radius:9px;padding:11px;color:var(--text);font:inherit}.summary{border-top:1px solid var(--line);padding:17px 20px;display:grid;gap:7px}.summary strong{font-size:20px}.summary small{color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 20px}.btn{border:1px solid #6550a3;background:#6845ba;color:white;padding:10px 14px;border-radius:9px;font-weight:700;cursor:pointer}.btn.secondary{background:#161f2c;border-color:#344156}.note{color:var(--muted);font-size:12px;margin-top:18px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.stage{min-height:460px}.pc{transform:scale(.85) rotateY(-24deg) rotateX(5deg)}}
+@media(max-width:500px){header{align-items:flex-start;flex-direction:column}.stage{min-height:370px}.pc{transform:scale(.67) rotateY(-24deg) rotateX(5deg);width:100%}}
+</style></head>
+<body>
+<header><div class="brand">BUILD<span>PC</span></div><div class="tag">CONFIGURADOR VISUAL · PROTOTIPO 3D</div></header>
+<main>
+<section class="intro"><h1>Tu próximo PC gaming.</h1><p>Una primera visualización de tu montaje en negro con iluminación ARGB. Cambia las opciones y mira cómo varía el aspecto.</p></section>
+<div class="layout">
+<section class="panel"><div class="panelhead"><h2>Vista interior</h2><span class="hint">Modelo conceptual · vista 3D</span></div>
+<div class="stage" id="stage"><div class="floor"></div><div class="pc" id="pc"><div class="case"><div class="glass"></div><div class="mobo"><div class="cpu"></div><div class="gpu"></div><div class="ram"><i></i><i></i></div><div class="cable"></div></div><div class="radiator"></div><div class="fan rear"></div><div class="fan f1"></div><div class="fan f2"></div><div class="fan f3"></div></div><div class="frontedge"></div></div></div>
+<div class="actions"><button class="btn secondary" id="rotate">Girar vista</button><button class="btn secondary" id="lights">Cambiar RGB</button></div></section>
+<aside class="panel"><div class="panelhead"><h2>Componentes</h2><span class="hint">Tu configuración</span></div>
+<div class="controls">
+<div class="group"><label for="case">Caja</label><select id="case"><option>Lian Li O11 Vision negra</option><option>Lian Li O11 Vision Compact negra</option></select></div>
+<div class="group"><label for="cpu">Procesador</label><select id="cpu"><option>AMD Ryzen 5 3600 (actual)</option><option>AMD Ryzen 7 5700X3D (posible mejora)</option></select></div>
+<div class="group"><label for="gpu">Tarjeta gráfica</label><select id="gpu"><option>ASUS PRIME RTX 5060 Ti OC 16 GB</option><option>Gigabyte GAMING OC RTX 5060 Ti 16 GB</option><option>Conservar GTX 1660 SUPER (actual)</option></select></div>
+<div class="group"><label for="ram">Memoria RAM</label><select id="ram"><option>16 GB DDR4 (actual)</option><option>32 GB DDR4 (mejora futura)</option></select></div>
+<div class="group"><label for="cooler">Refrigeración CPU</label><select id="cooler"><option>Refrigeración líquida actual (modelo por confirmar)</option><option>Refrigeración por aire (por elegir)</option></select></div>
+<div class="group"><label for="fans">Ventiladores de caja</label><select id="fans"><option>ARCTIC P12 Pro A-RGB negros</option><option>Ventiladores negros sin RGB</option></select></div>
+<div class="group"><label for="psu">Fuente de alimentación</label><select id="psu"><option>Fuente actual 750 W (modelo por comprobar)</option><option>Pendiente de elegir</option></select></div>
+<div class="group"><label for="glow">Color de iluminación</label><select id="glow"><option value="#9b5cff">Morado</option><option value="#39b9ff">Azul</option><option value="#35e6a0">Verde</option><option value="#ff4d91">Rosa</option><option value="#ffffff">Blanco</option></select></div>
+</div>
+<div class="summary"><small>Selección actual</small><strong id="gpuLabel">ASUS PRIME RTX 5060 Ti OC 16 GB</strong><span class="hint" id="summaryText">O11 Vision · 16 GB RAM · RGB morado</span></div>
+<div class="actions"><button class="btn" id="copy">Copiar resumen</button><button class="btn secondary" id="reset">Restablecer</button></div>
+</aside></div>
+<p class="note">Importante: esta página es una maqueta visual interactiva creada para este proyecto; no es el configurador oficial de BuildCores ni valida compatibilidad, medidas, conexiones o temperaturas. La placa MSI B450-A PRO MAX, el SSD, la fuente exacta y el modelo de líquida deben confirmarse antes de comprar piezas.</p>
+</main>
+<script>
+const ids=['case','cpu','gpu','ram','cooler','fans','psu','glow'];const $=id=>document.getElementById(id);let angle=-24;
+function update(){document.documentElement.style.setProperty('--glow',$('glow').value);$('gpuLabel').textContent=$('gpu').value;$('summaryText').textContent=$('case').value+' · '+$('ram').value+' · RGB '+$('glow').selectedOptions[0].text.toLowerCase();}
+ids.forEach(id=>$(id).addEventListener('change',update));
+$('rotate').onclick=()=>{angle-=35;$('pc').style.transform='rotateY('+angle+'deg) rotateX(5deg)'};
+$('lights').onclick=()=>{const s=$('glow');s.selectedIndex=(s.selectedIndex+1)%s.options.length;update()};
+$('reset').onclick=()=>{ids.forEach(id=>$(id).selectedIndex=0);angle=-24;$('pc').style.transform='rotateY(-24deg) rotateX(5deg)';update()};
+$('copy').onclick=()=>{const t=ids.map(id=>$(id).previousElementSibling.textContent+': '+$(id).selectedOptions[0].text).join('\n');navigator.clipboard?.writeText(t).then(()=>alert('Resumen copiado')).catch(()=>alert(t));};
+update();
+</script></body></html>
